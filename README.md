@@ -1,6 +1,6 @@
 # LolAccountManager
 ![ExampleIMG](https://i.imgur.com/4BHW7Us.png)
-[More example screenshots of the program can be found here](https://imgur.com/a/ITKUrWZ)
+[More screenshots can be found here](https://imgur.com/a/ITKUrWZ)
 
 
 LolAccountManager is a account manager for League Of Legends.
