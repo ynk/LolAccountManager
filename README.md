@@ -16,6 +16,13 @@ Use at your own risk!
 - Run on Startup
 - Start minimized
 
+## Tested on these servers
+- EUW
+- PBE
+- KR
+- NA
+- EUNE
+
 
 ## Used Libraries
 - Newtonsoft.Json
