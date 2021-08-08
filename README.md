@@ -4,7 +4,7 @@
 [More screenshots can be found here](https://imgur.com/a/ITKUrWZ)
 
 
-LolAccountManager is a account manager for League Of Legends.
+LolAccountManager is a account manager for League Of Legends with the ability to automatically sign you into your accounts.
 
 
 
@@ -23,6 +23,9 @@ Use at your own risk!
 - NA
 - EUNE
 
+## Todo:
+- Add ranks, winrate, last signed in.
+- Feel free to add suggestions by opening an issue.
 
 ## Used Libraries
 - Newtonsoft.Json
