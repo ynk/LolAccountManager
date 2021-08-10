@@ -22,7 +22,7 @@ namespace LCULib
         public string Password { get; set; }
 
         private Process RiotProcess { get; set; }
-        
+
         public RiotAccount RiotAccount { get; set; }
 
         public RiotClientResponseAccount RiotResponseAccount { get; set; }
@@ -98,7 +98,7 @@ namespace LCULib
                 }
 
                 GetSummonerDetailsSingedIn();
-               
+
             }
         }
 
@@ -125,13 +125,14 @@ namespace LCULib
 
                 streamWriter.Write(json);
             }
-           
+
             var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse();
-            
+
             if (httpResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
                 throw new RiotClientExceptions("401 Unauthorized");
             }
+
             if (httpResponse.StatusCode == HttpStatusCode.BadRequest)
             {
                 throw new RiotClientExceptions(
@@ -141,7 +142,7 @@ namespace LCULib
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 var result = streamReader.ReadToEnd();
-               
+
             }
         }
 
@@ -172,17 +173,17 @@ namespace LCULib
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "GET";
             httpWebRequest.Headers.Add("Authorization", $"Basic {Password}");
- 
+
 
             var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse();
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
-        
+
                 var result = streamReader.ReadToEnd();
                 dynamic jsonResponse = JsonConvert.DeserializeObject(result);
                 RiotResponseAccount = new RiotClientResponseAccount();
 
-                RiotResponseAccount.Server = jsonResponse.acct.tag_line;
+                RiotResponseAccount.Server = GetSignedInServer();
                 RiotResponseAccount.SummonerName = jsonResponse.lol_account.summoner_name;
 
 
@@ -190,6 +191,65 @@ namespace LCULib
 
             }
         }
+
+        private string GetSignedInServer()
+        {
+            var httpWebRequest =
+                (HttpWebRequest)WebRequest.Create($"https://127.0.0.1:{Port}/rso-auth/v1/authorization");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "GET";
+            httpWebRequest.Headers.Add("Authorization", $"Basic {Password}");
+
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+
+                var result = streamReader.ReadToEnd();
+                dynamic jsonResponse = JsonConvert.DeserializeObject(result);
+
+                string response =  jsonResponse.currentPlatformId;
+
+
+
+                switch (response.ToLower())
+                {
+                    case "euw1":
+                        return "EUW";
+                    case "na1":
+                        return "NA";
+                    case "br1":
+                        return "BR";
+                    case "eun1":
+                        return "EUNE";
+                    case "la1":
+                        return "LAN";
+                    case "la2":
+                        return "LAS";
+                    case "oc1":
+                        return "OC";
+                    case "tr1":
+                        return "TR";
+                    case "jp1":
+                        return "JP";
+                    case "kr":
+                        return "KR";
+                    case "ru":
+                        return "RU";
+                    default:
+                        return "***";
+                }
+
+
+
+            }
+
+            return "error";
+
+
+
+        }
+
 
         public override string ToString()
         {
