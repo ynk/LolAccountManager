@@ -236,6 +236,8 @@ namespace LCULib
                         return "KR";
                     case "ru":
                         return "RU";
+                    case "pbe1":
+                        return "PBE";
                     default:
                         return "***";
                 }
