@@ -88,7 +88,7 @@ namespace LolAccountManager
         {
             if (Checkbox_DebugMode.Checked)
             {
-                DebugLog.AppendText($"[{DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt")}] {Msg} {Environment.NewLine}");
+                DebugLog.AppendText($"[{DateTime.Now:MM\\/dd\\/yyyy h\\:mm tt}] {Msg} {Environment.NewLine}");
             }
         }
 
@@ -274,6 +274,9 @@ namespace LolAccountManager
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+
+
+
             RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
 
 
@@ -462,14 +465,7 @@ namespace LolAccountManager
 
         private void CheckBox_Add_HideUsername_CheckedChanged(object sender, EventArgs e)
         {
-            if (CheckBox_Add_HideUsername.Checked)
-            {
-                TextBox_AddAccount_LoginName.UseSystemPasswordChar = true;
-            }
-            else
-            {
-                TextBox_AddAccount_LoginName.UseSystemPasswordChar = false;
-            }
+            TextBox_AddAccount_LoginName.UseSystemPasswordChar = CheckBox_Add_HideUsername.Checked;
         }
 
         private void ManageAccountTab_Click(object sender, EventArgs e)
@@ -605,23 +601,38 @@ namespace LolAccountManager
 
         private void Button_ModifyAccount_GetRankedData_Click(object sender, EventArgs e)
         {
-            LeagueClient leagueClient = new LeagueClient();
+            try
+            {
+                LeagueClient leagueClient = new LeagueClient();
 
 
-            RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
+                RiotAccount currentObject = (RiotAccount)accountGridView.CurrentRow.DataBoundItem;
 
 
-            leagueClient.GetCurrentRankedStats();
+                leagueClient.GetCurrentRankedStats();
 
-            currentObject.Flex_Rank = leagueClient.LeagueClientRanked.Flex_Queue;
-            TextBox_ModifyAccount_FlexQueue.Text = currentObject.Flex_Rank;
-
-
-            currentObject.Solo_Duo_Rank = leagueClient.LeagueClientRanked.Solo_Queue;
-            TextBox_ModifyAccount_SoloQueue.Text = currentObject.Solo_Duo_Rank;
+                currentObject.Flex_Rank = leagueClient.LeagueClientRanked.Flex_Queue;
+                TextBox_ModifyAccount_FlexQueue.Text = currentObject.Flex_Rank;
 
 
-            WriteToDebug(leagueClient.ToString());
+                currentObject.Solo_Duo_Rank = leagueClient.LeagueClientRanked.Solo_Queue;
+                TextBox_ModifyAccount_SoloQueue.Text = currentObject.Solo_Duo_Rank;
+
+
+                WriteToDebug(leagueClient.ToString());
+            }
+            catch (Exception exception)
+            {
+
+                WriteToDebug($"Button_ModifyAccount_GetRankedData_Click: {exception.Message}");
+                MessageBox.Show(exception.Message);
+            }
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/ynk/LolAccountManager");
         }
 
 

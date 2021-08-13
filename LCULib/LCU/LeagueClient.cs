@@ -33,12 +33,12 @@ namespace LCULib.LCU
             Process[] client = Process.GetProcessesByName("LeagueClientUx");
             if (client.Length == 0)
             {
-                throw new InvalidEnumArgumentException("No Client Is Running");
+                throw new InvalidEnumArgumentException("League client Is not running");
             }
 
             if (client.Length != 1)
             {
-                throw new InvalidEnumArgumentException("Too many clients");
+                throw new InvalidEnumArgumentException("Too many League clients are running, only 1 client is supported.");
             }
 
             LeagueProcess = client[0];

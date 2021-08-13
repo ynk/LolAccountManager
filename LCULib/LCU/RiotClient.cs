@@ -38,13 +38,13 @@ namespace LCULib
             Process[] client = Process.GetProcessesByName("RiotClientUx");
             if (client.Length == 0)
             {
-                throw new RiotClientExceptions("Client not running");
+                throw new RiotClientExceptions("RiotClient is not running");
             }
 
             if (client.Length != 1)
             {
                 throw new RiotClientExceptions(
-                    $"Too many clients({client.Length}) are running, make sure only 1 client is running");
+                    $"Too many RiotClientUx clients({client.Length}) are running, make sure only 1 client is running");
             }
 
             RiotProcess = client[0];
