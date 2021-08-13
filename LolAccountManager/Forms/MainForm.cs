@@ -302,7 +302,7 @@ namespace LolAccountManager
                 accountGridView.Refresh();
 
 
-                statusLabel.Text = $"Logged into Test123({currentObject.Server})";
+                statusLabel.Text = $"Logged into: {currentObject.SummonerName}({currentObject.Server})";
             }
 
             catch (Exception exception)
