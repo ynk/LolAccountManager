@@ -222,7 +222,6 @@ namespace LolAccountManager
         }
 
 
-       
         private void ManageAccountButton4Click(object sender, EventArgs e)
         {
             try
@@ -235,6 +234,11 @@ namespace LolAccountManager
                 TextBox_ModifyAccount_Password.Text = currentObject.Password;
                 TextBox_ModifyAccount_Server.Text = currentObject.Server;
                 TextBox_ModifyAccount_SummonerName.Text = currentObject.SummonerName;
+            }
+            catch (NullReferenceException exception)
+            {
+                WriteToDebug($"{exception.Message}");
+                MessageBox.Show($"No account has been selected.");
             }
             catch (Exception exception)
             {
@@ -271,7 +275,7 @@ namespace LolAccountManager
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            RiotAccount currentObject = (RiotAccount)accountGridView.CurrentRow.DataBoundItem;
+            RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
 
 
             RiotAccount account = new RiotAccount(currentObject.LoginName, currentObject.Password);
@@ -298,7 +302,7 @@ namespace LolAccountManager
 
                 statusLabel.Text = $"Logged into {currentObject.SummonerName}({currentObject.Server})";
             }
- 
+
             catch (Exception exception)
             {
                 statusLabel.Text = $"Error trying to login: {exception.Message}";
@@ -455,7 +459,6 @@ namespace LolAccountManager
             {
                 TextBox_Password.UseSystemPasswordChar = true;
             }
-      
         }
 
         private void CheckBox_Add_HideUsername_CheckedChanged(object sender, EventArgs e)
@@ -534,7 +537,7 @@ namespace LolAccountManager
                     currentObject.SetPassword(TextBox_ModifyAccount_Password.Text);
 
                     _riotClient = new RiotClient();
-                    
+
 
                     _riotClient.Login(currentObject);
 
@@ -556,7 +559,6 @@ namespace LolAccountManager
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
-              
             }
 
 
@@ -596,6 +598,28 @@ namespace LolAccountManager
                 TextBox_ModifyAccount_SummonerName.UseSystemPasswordChar = true;
             }
             // Manage Account 
+        }
+
+
+        private void Button_ModifyAccount_GetRankedData_Click(object sender, EventArgs e)
+        {
+            LeagueClient leagueClient = new LeagueClient();
+
+
+            RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
+
+
+            leagueClient.GetCurrentRankedStats();
+
+            currentObject.Flex_Rank = leagueClient.LeagueClientRanked.Flex_Queue;
+            TextBox_ModifyAccount_FlexQueue.Text = currentObject.Flex_Rank;
+
+
+            currentObject.Solo_Duo_Rank = leagueClient.LeagueClientRanked.Solo_Queue;
+            TextBox_ModifyAccount_SoloQueue.Text = currentObject.Solo_Duo_Rank;
+
+
+            WriteToDebug(leagueClient.ToString());
         }
 
 
