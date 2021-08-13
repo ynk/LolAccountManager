@@ -52,10 +52,7 @@ namespace LolAccountManager
         }
 
 
-        private void DebugTestLoginButton_Click(object sender, EventArgs e)
-        {
-            GatherClientDetails();
-        }
+   
 
         public bool CheckIfRunOnStartupIsEnabled()
         {

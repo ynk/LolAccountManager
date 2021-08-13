@@ -32,11 +32,17 @@ namespace LolAccountManager
             this.components = new System.ComponentModel.Container();
             this.Tabs = new System.Windows.Forms.TabControl();
             this.HomePage = new System.Windows.Forms.TabPage();
+            this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.Button_SaveAccounts = new System.Windows.Forms.Button();
             this.accountGridView = new System.Windows.Forms.DataGridView();
             this.ManageAccountTab = new System.Windows.Forms.TabPage();
+            this.Button_ModifyAccount_GetRankedData = new System.Windows.Forms.Button();
+            this.TextBox_ModifyAccount_FlexQueue = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TextBox_ModifyAccount_SoloQueue = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.Button_ManageAccount_Login = new System.Windows.Forms.Button();
             this.Button_ModifyAccount_DeleteAccount = new System.Windows.Forms.Button();
             this.Button_ManageAccount_CopyLoginNameClipboard = new System.Windows.Forms.Button();
@@ -82,19 +88,13 @@ namespace LolAccountManager
             this.BackgroundWorker_RankChecker = new System.ComponentModel.BackgroundWorker();
             this.BackgroundWorker_ClientChecker = new System.ComponentModel.BackgroundWorker();
             this.Notify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.Solo_Duo_Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Flex_Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TextBox_ModifyAccount_SoloQueue = new System.Windows.Forms.TextBox();
-            this.TextBox_ModifyAccount_FlexQueue = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.Button_ModifyAccount_GetRankedData = new System.Windows.Forms.Button();
+            this.riotAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.loginNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Solo_Duo_Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Flex_Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.summonerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.riotAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Tabs.SuspendLayout();
             this.HomePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accountGridView)).BeginInit();
@@ -135,6 +135,15 @@ namespace LolAccountManager
             this.HomePage.TabIndex = 0;
             this.HomePage.Text = "Accounts";
             this.HomePage.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(632, 40);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(181, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Double Click on a account to sign in!";
             // 
             // button4
             // 
@@ -182,8 +191,9 @@ namespace LolAccountManager
             this.accountGridView.Location = new System.Drawing.Point(9, 64);
             this.accountGridView.Name = "accountGridView";
             this.accountGridView.ReadOnly = true;
+            this.accountGridView.RowHeadersVisible = false;
             this.accountGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.accountGridView.Size = new System.Drawing.Size(805, 315);
+            this.accountGridView.Size = new System.Drawing.Size(808, 344);
             this.accountGridView.TabIndex = 1;
             this.accountGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.accountGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
@@ -211,11 +221,55 @@ namespace LolAccountManager
             this.ManageAccountTab.Controls.Add(this.label1);
             this.ManageAccountTab.Location = new System.Drawing.Point(4, 22);
             this.ManageAccountTab.Name = "ManageAccountTab";
-            this.ManageAccountTab.Size = new System.Drawing.Size(654, 396);
+            this.ManageAccountTab.Size = new System.Drawing.Size(823, 414);
             this.ManageAccountTab.TabIndex = 4;
             this.ManageAccountTab.Text = "Manage Account";
             this.ManageAccountTab.UseVisualStyleBackColor = true;
             this.ManageAccountTab.Click += new System.EventHandler(this.ManageAccountTab_Click);
+            // 
+            // Button_ModifyAccount_GetRankedData
+            // 
+            this.Button_ModifyAccount_GetRankedData.Location = new System.Drawing.Point(386, 293);
+            this.Button_ModifyAccount_GetRankedData.Name = "Button_ModifyAccount_GetRankedData";
+            this.Button_ModifyAccount_GetRankedData.Size = new System.Drawing.Size(119, 34);
+            this.Button_ModifyAccount_GetRankedData.TabIndex = 20;
+            this.Button_ModifyAccount_GetRankedData.Text = "Get Ranked Data";
+            this.Button_ModifyAccount_GetRankedData.UseVisualStyleBackColor = true;
+            this.Button_ModifyAccount_GetRankedData.Click += new System.EventHandler(this.Button_ModifyAccount_GetRankedData_Click);
+            // 
+            // TextBox_ModifyAccount_FlexQueue
+            // 
+            this.TextBox_ModifyAccount_FlexQueue.Enabled = false;
+            this.TextBox_ModifyAccount_FlexQueue.Location = new System.Drawing.Point(103, 191);
+            this.TextBox_ModifyAccount_FlexQueue.Name = "TextBox_ModifyAccount_FlexQueue";
+            this.TextBox_ModifyAccount_FlexQueue.Size = new System.Drawing.Size(232, 20);
+            this.TextBox_ModifyAccount_FlexQueue.TabIndex = 19;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 194);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Flex Queue";
+            // 
+            // TextBox_ModifyAccount_SoloQueue
+            // 
+            this.TextBox_ModifyAccount_SoloQueue.Enabled = false;
+            this.TextBox_ModifyAccount_SoloQueue.Location = new System.Drawing.Point(103, 161);
+            this.TextBox_ModifyAccount_SoloQueue.Name = "TextBox_ModifyAccount_SoloQueue";
+            this.TextBox_ModifyAccount_SoloQueue.Size = new System.Drawing.Size(232, 20);
+            this.TextBox_ModifyAccount_SoloQueue.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(9, 168);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Solo Queue";
             // 
             // Button_ManageAccount_Login
             // 
@@ -356,7 +410,7 @@ namespace LolAccountManager
             this.AccountPage.Controls.Add(this.CheckBox_Add_HidePassword);
             this.AccountPage.Location = new System.Drawing.Point(4, 22);
             this.AccountPage.Name = "AccountPage";
-            this.AccountPage.Size = new System.Drawing.Size(654, 396);
+            this.AccountPage.Size = new System.Drawing.Size(823, 414);
             this.AccountPage.TabIndex = 3;
             this.AccountPage.Text = "Add Account";
             this.AccountPage.UseVisualStyleBackColor = true;
@@ -449,7 +503,7 @@ namespace LolAccountManager
             this.SettingsPage.Controls.Add(this.Checkbox_DebugMode);
             this.SettingsPage.Location = new System.Drawing.Point(4, 22);
             this.SettingsPage.Name = "SettingsPage";
-            this.SettingsPage.Size = new System.Drawing.Size(654, 396);
+            this.SettingsPage.Size = new System.Drawing.Size(823, 414);
             this.SettingsPage.TabIndex = 2;
             this.SettingsPage.Text = "Settings";
             this.SettingsPage.UseVisualStyleBackColor = true;
@@ -501,7 +555,7 @@ namespace LolAccountManager
             // 
             // Button_Settings_Default
             // 
-            this.Button_Settings_Default.Location = new System.Drawing.Point(426, 355);
+            this.Button_Settings_Default.Location = new System.Drawing.Point(582, 376);
             this.Button_Settings_Default.Name = "Button_Settings_Default";
             this.Button_Settings_Default.Size = new System.Drawing.Size(90, 23);
             this.Button_Settings_Default.TabIndex = 14;
@@ -511,7 +565,7 @@ namespace LolAccountManager
             // 
             // Button_SaveSettings
             // 
-            this.Button_SaveSettings.Location = new System.Drawing.Point(522, 355);
+            this.Button_SaveSettings.Location = new System.Drawing.Point(694, 376);
             this.Button_SaveSettings.Name = "Button_SaveSettings";
             this.Button_SaveSettings.Size = new System.Drawing.Size(109, 23);
             this.Button_SaveSettings.TabIndex = 13;
@@ -522,7 +576,7 @@ namespace LolAccountManager
             // CheckBox_StartMinimized
             // 
             this.CheckBox_StartMinimized.AutoSize = true;
-            this.CheckBox_StartMinimized.Location = new System.Drawing.Point(202, 361);
+            this.CheckBox_StartMinimized.Location = new System.Drawing.Point(201, 382);
             this.CheckBox_StartMinimized.Name = "CheckBox_StartMinimized";
             this.CheckBox_StartMinimized.Size = new System.Drawing.Size(100, 17);
             this.CheckBox_StartMinimized.TabIndex = 12;
@@ -532,7 +586,7 @@ namespace LolAccountManager
             // CheckBox_LaunchStartup
             // 
             this.CheckBox_LaunchStartup.AutoSize = true;
-            this.CheckBox_LaunchStartup.Location = new System.Drawing.Point(80, 361);
+            this.CheckBox_LaunchStartup.Location = new System.Drawing.Point(79, 382);
             this.CheckBox_LaunchStartup.Name = "CheckBox_LaunchStartup";
             this.CheckBox_LaunchStartup.Size = new System.Drawing.Size(116, 17);
             this.CheckBox_LaunchStartup.TabIndex = 11;
@@ -574,7 +628,7 @@ namespace LolAccountManager
             // Checkbox_DebugMode
             // 
             this.Checkbox_DebugMode.AutoSize = true;
-            this.Checkbox_DebugMode.Location = new System.Drawing.Point(16, 361);
+            this.Checkbox_DebugMode.Location = new System.Drawing.Point(15, 382);
             this.Checkbox_DebugMode.Name = "Checkbox_DebugMode";
             this.Checkbox_DebugMode.Size = new System.Drawing.Size(58, 17);
             this.Checkbox_DebugMode.TabIndex = 1;
@@ -589,7 +643,7 @@ namespace LolAccountManager
             this.DebugPage.Location = new System.Drawing.Point(4, 22);
             this.DebugPage.Name = "DebugPage";
             this.DebugPage.Padding = new System.Windows.Forms.Padding(3);
-            this.DebugPage.Size = new System.Drawing.Size(654, 396);
+            this.DebugPage.Size = new System.Drawing.Size(823, 414);
             this.DebugPage.TabIndex = 1;
             this.DebugPage.Text = "Debug";
             this.DebugPage.UseVisualStyleBackColor = true;
@@ -642,72 +696,9 @@ namespace LolAccountManager
             this.Notify.Text = "LolAccountManager";
             this.Notify.Visible = true;
             // 
-            // Solo_Duo_Rank
+            // riotAccountBindingSource
             // 
-            this.Solo_Duo_Rank.DataPropertyName = "Solo_Duo_Rank";
-            this.Solo_Duo_Rank.HeaderText = "Solo Queue";
-            this.Solo_Duo_Rank.Name = "Solo_Duo_Rank";
-            this.Solo_Duo_Rank.ReadOnly = true;
-            // 
-            // Flex_Rank
-            // 
-            this.Flex_Rank.DataPropertyName = "Flex_Rank";
-            this.Flex_Rank.HeaderText = "Flex Queue";
-            this.Flex_Rank.Name = "Flex_Rank";
-            this.Flex_Rank.ReadOnly = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(632, 40);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(181, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Double Click on a account to sign in!";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 168);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Solo Queue";
-            // 
-            // TextBox_ModifyAccount_SoloQueue
-            // 
-            this.TextBox_ModifyAccount_SoloQueue.Enabled = false;
-            this.TextBox_ModifyAccount_SoloQueue.Location = new System.Drawing.Point(103, 161);
-            this.TextBox_ModifyAccount_SoloQueue.Name = "TextBox_ModifyAccount_SoloQueue";
-            this.TextBox_ModifyAccount_SoloQueue.Size = new System.Drawing.Size(232, 20);
-            this.TextBox_ModifyAccount_SoloQueue.TabIndex = 17;
-            // 
-            // TextBox_ModifyAccount_FlexQueue
-            // 
-            this.TextBox_ModifyAccount_FlexQueue.Enabled = false;
-            this.TextBox_ModifyAccount_FlexQueue.Location = new System.Drawing.Point(103, 191);
-            this.TextBox_ModifyAccount_FlexQueue.Name = "TextBox_ModifyAccount_FlexQueue";
-            this.TextBox_ModifyAccount_FlexQueue.Size = new System.Drawing.Size(232, 20);
-            this.TextBox_ModifyAccount_FlexQueue.TabIndex = 19;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 194);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(61, 13);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Flex Queue";
-            // 
-            // Button_ModifyAccount_GetRankedData
-            // 
-            this.Button_ModifyAccount_GetRankedData.Location = new System.Drawing.Point(386, 293);
-            this.Button_ModifyAccount_GetRankedData.Name = "Button_ModifyAccount_GetRankedData";
-            this.Button_ModifyAccount_GetRankedData.Size = new System.Drawing.Size(119, 34);
-            this.Button_ModifyAccount_GetRankedData.TabIndex = 20;
-            this.Button_ModifyAccount_GetRankedData.Text = "Get Ranked Data";
-            this.Button_ModifyAccount_GetRankedData.UseVisualStyleBackColor = true;
-            this.Button_ModifyAccount_GetRankedData.Click += new System.EventHandler(this.Button_ModifyAccount_GetRankedData_Click);
+            this.riotAccountBindingSource.DataSource = typeof(LCULib.LCU.RiotAccount);
             // 
             // loginNameDataGridViewTextBoxColumn
             // 
@@ -731,6 +722,23 @@ namespace LolAccountManager
             this.serverDataGridViewTextBoxColumn.HeaderText = "Server";
             this.serverDataGridViewTextBoxColumn.Name = "serverDataGridViewTextBoxColumn";
             this.serverDataGridViewTextBoxColumn.ReadOnly = true;
+            this.serverDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // Solo_Duo_Rank
+            // 
+            this.Solo_Duo_Rank.DataPropertyName = "Solo_Duo_Rank";
+            this.Solo_Duo_Rank.HeaderText = "Solo Queue";
+            this.Solo_Duo_Rank.Name = "Solo_Duo_Rank";
+            this.Solo_Duo_Rank.ReadOnly = true;
+            this.Solo_Duo_Rank.Width = 180;
+            // 
+            // Flex_Rank
+            // 
+            this.Flex_Rank.DataPropertyName = "Flex_Rank";
+            this.Flex_Rank.HeaderText = "Flex Queue";
+            this.Flex_Rank.Name = "Flex_Rank";
+            this.Flex_Rank.ReadOnly = true;
+            this.Flex_Rank.Width = 180;
             // 
             // summonerNameDataGridViewTextBoxColumn
             // 
@@ -741,10 +749,6 @@ namespace LolAccountManager
             this.summonerNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.summonerNameDataGridViewTextBoxColumn.Width = 250;
             // 
-            // riotAccountBindingSource
-            // 
-            this.riotAccountBindingSource.DataSource = typeof(LCULib.LCU.RiotAccount);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -754,6 +758,7 @@ namespace LolAccountManager
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.Tabs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "LolAccountManager";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -838,18 +843,18 @@ namespace LolAccountManager
         private System.Windows.Forms.CheckBox Checkbox_ManageAccount_HideLoginName;
         private System.Windows.Forms.Button Button_ManageAccount_Login;
         private System.Windows.Forms.CheckBox CheckBox_Add_HidePassword;
-        private System.Windows.Forms.DataGridViewTextBoxColumn loginNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn serverDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Solo_Duo_Rank;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Flex_Rank;
-        private System.Windows.Forms.DataGridViewTextBoxColumn summonerNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button Button_ModifyAccount_GetRankedData;
         private System.Windows.Forms.TextBox TextBox_ModifyAccount_FlexQueue;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox TextBox_ModifyAccount_SoloQueue;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn loginNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn serverDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Solo_Duo_Rank;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Flex_Rank;
+        private System.Windows.Forms.DataGridViewTextBoxColumn summonerNameDataGridViewTextBoxColumn;
     }
 }
 
