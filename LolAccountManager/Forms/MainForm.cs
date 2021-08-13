@@ -619,7 +619,8 @@ namespace LolAccountManager
                 TextBox_ModifyAccount_SoloQueue.Text = currentObject.Solo_Duo_Rank;
 
 
-                WriteToDebug(leagueClient.ToString());
+                WriteToDebug("Ranked details gathered");
+
             }
             catch (Exception exception)
             {
