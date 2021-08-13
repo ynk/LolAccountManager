@@ -11,14 +11,14 @@ namespace LCULib.LCU
     {
         public string LoginName { get;  set; } // Set is set to public because of file reading, normally this would be private.
         public string Password { get;  set; }
-        public string Server { get;  set; }
-        public string SummonerName { get;  set; }
-        // public string Rank { get; set; }
-        // public string Tier { get; set; }
+        public string Server { get; set; } = "?";
+        public string SummonerName { get; set; } = "NoName";
+        public string Solo_Duo_Rank { get; set; } = "Unranked";
+        public string Flex_Rank { get; set; } = "Unranked";
 
 
 
-     
+
 
         public RiotAccount(string loginName, string password)
         {

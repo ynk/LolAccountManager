@@ -52,10 +52,7 @@ namespace LolAccountManager
         }
 
 
-        private void DebugTestLoginButton_Click(object sender, EventArgs e)
-        {
-            GatherClientDetails();
-        }
+   
 
         public bool CheckIfRunOnStartupIsEnabled()
         {
@@ -91,7 +88,7 @@ namespace LolAccountManager
         {
             if (Checkbox_DebugMode.Checked)
             {
-                DebugLog.AppendText($"[{DateTime.Now.ToString(@"MM\/dd\/yyyy h\:mm tt")}] {Msg} {Environment.NewLine}");
+                DebugLog.AppendText($"[{DateTime.Now:MM\\/dd\\/yyyy h\\:mm tt}] {Msg} {Environment.NewLine}");
             }
         }
 
@@ -222,7 +219,6 @@ namespace LolAccountManager
         }
 
 
-       
         private void ManageAccountButton4Click(object sender, EventArgs e)
         {
             try
@@ -235,6 +231,13 @@ namespace LolAccountManager
                 TextBox_ModifyAccount_Password.Text = currentObject.Password;
                 TextBox_ModifyAccount_Server.Text = currentObject.Server;
                 TextBox_ModifyAccount_SummonerName.Text = currentObject.SummonerName;
+                TextBox_ModifyAccount_SoloQueue.Text = currentObject.Solo_Duo_Rank;
+                TextBox_ModifyAccount_FlexQueue.Text = currentObject.Flex_Rank;
+            }
+            catch (NullReferenceException exception)
+            {
+                WriteToDebug($"{exception.Message}");
+                MessageBox.Show($"No account has been selected.");
             }
             catch (Exception exception)
             {
@@ -271,7 +274,10 @@ namespace LolAccountManager
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            RiotAccount currentObject = (RiotAccount)accountGridView.CurrentRow.DataBoundItem;
+
+
+
+            RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
 
 
             RiotAccount account = new RiotAccount(currentObject.LoginName, currentObject.Password);
@@ -296,9 +302,9 @@ namespace LolAccountManager
                 accountGridView.Refresh();
 
 
-                statusLabel.Text = $"Logged into {currentObject.SummonerName}({currentObject.Server})";
+                statusLabel.Text = $"Logged into Test123({currentObject.Server})";
             }
- 
+
             catch (Exception exception)
             {
                 statusLabel.Text = $"Error trying to login: {exception.Message}";
@@ -455,19 +461,11 @@ namespace LolAccountManager
             {
                 TextBox_Password.UseSystemPasswordChar = true;
             }
-      
         }
 
         private void CheckBox_Add_HideUsername_CheckedChanged(object sender, EventArgs e)
         {
-            if (CheckBox_Add_HideUsername.Checked)
-            {
-                TextBox_AddAccount_LoginName.UseSystemPasswordChar = true;
-            }
-            else
-            {
-                TextBox_AddAccount_LoginName.UseSystemPasswordChar = false;
-            }
+            TextBox_AddAccount_LoginName.UseSystemPasswordChar = CheckBox_Add_HideUsername.Checked;
         }
 
         private void ManageAccountTab_Click(object sender, EventArgs e)
@@ -479,12 +477,12 @@ namespace LolAccountManager
             RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
             currentObject.SetLoginName(TextBox_ModifyAccount_LoginName.Text);
             currentObject.SetPassword(TextBox_ModifyAccount_Password.Text);
-            //currentObject.SetServer(TextBox_ModifyAccount_Server.Text);
-            //currentObject.SetSummonerName(TextBox_ModifyAccount_Server.Text);
             TextBox_ModifyAccount_LoginName.Text = "";
             TextBox_ModifyAccount_Password.Text = "";
             TextBox_ModifyAccount_Server.Text = "";
             TextBox_ModifyAccount_SummonerName.Text = "";
+            TextBox_ModifyAccount_SoloQueue.Text = "";
+            TextBox_ModifyAccount_FlexQueue.Text = "";
 
 
             ((Control) ManageAccountTab).Enabled = false;
@@ -500,6 +498,9 @@ namespace LolAccountManager
             TextBox_ModifyAccount_SummonerName.Text = "";
             TextBox_ModifyAccount_Server.Text = "";
             TextBox_ModifyAccount_Password.Text = "";
+            TextBox_ModifyAccount_SoloQueue.Text = "";
+            TextBox_ModifyAccount_FlexQueue.Text = "";
+
             _source.Remove(currentObject);
             ((Control) ManageAccountTab).Enabled = false;
             Tabs.SelectedIndex = 0;
@@ -534,7 +535,7 @@ namespace LolAccountManager
                     currentObject.SetPassword(TextBox_ModifyAccount_Password.Text);
 
                     _riotClient = new RiotClient();
-                    
+
 
                     _riotClient.Login(currentObject);
 
@@ -556,7 +557,6 @@ namespace LolAccountManager
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
-              
             }
 
 
@@ -596,6 +596,44 @@ namespace LolAccountManager
                 TextBox_ModifyAccount_SummonerName.UseSystemPasswordChar = true;
             }
             // Manage Account 
+        }
+
+
+        private void Button_ModifyAccount_GetRankedData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LeagueClient leagueClient = new LeagueClient();
+
+
+                RiotAccount currentObject = (RiotAccount)accountGridView.CurrentRow.DataBoundItem;
+
+
+                leagueClient.GetCurrentRankedStats();
+
+                currentObject.Flex_Rank = leagueClient.LeagueClientRanked.Flex_Queue;
+                TextBox_ModifyAccount_FlexQueue.Text = currentObject.Flex_Rank;
+
+
+                currentObject.Solo_Duo_Rank = leagueClient.LeagueClientRanked.Solo_Queue;
+                TextBox_ModifyAccount_SoloQueue.Text = currentObject.Solo_Duo_Rank;
+
+
+                WriteToDebug("Ranked details gathered");
+
+            }
+            catch (Exception exception)
+            {
+
+                WriteToDebug($"Button_ModifyAccount_GetRankedData_Click: {exception.Message}");
+                MessageBox.Show(exception.Message);
+            }
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/ynk/LolAccountManager");
         }
 
 
