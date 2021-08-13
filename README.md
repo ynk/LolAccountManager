@@ -40,7 +40,8 @@ Use at your own risk!
 [.NET](https://dotnet.microsoft.com/download/dotnet/5.0)
 
 
-
+## Please note
+I have noticed that Windows defender complains that release V1.3 gets flagged as malware, obviously this is a false postive. I am trying to find a solution for this problem. 
 
 
 
