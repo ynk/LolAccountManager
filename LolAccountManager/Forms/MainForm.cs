@@ -231,6 +231,8 @@ namespace LolAccountManager
                 TextBox_ModifyAccount_Password.Text = currentObject.Password;
                 TextBox_ModifyAccount_Server.Text = currentObject.Server;
                 TextBox_ModifyAccount_SummonerName.Text = currentObject.SummonerName;
+                TextBox_ModifyAccount_SoloQueue.Text = currentObject.Solo_Duo_Rank;
+                TextBox_ModifyAccount_FlexQueue.Text = currentObject.Flex_Rank;
             }
             catch (NullReferenceException exception)
             {
@@ -479,12 +481,12 @@ namespace LolAccountManager
             RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
             currentObject.SetLoginName(TextBox_ModifyAccount_LoginName.Text);
             currentObject.SetPassword(TextBox_ModifyAccount_Password.Text);
-            //currentObject.SetServer(TextBox_ModifyAccount_Server.Text);
-            //currentObject.SetSummonerName(TextBox_ModifyAccount_Server.Text);
             TextBox_ModifyAccount_LoginName.Text = "";
             TextBox_ModifyAccount_Password.Text = "";
             TextBox_ModifyAccount_Server.Text = "";
             TextBox_ModifyAccount_SummonerName.Text = "";
+            TextBox_ModifyAccount_SoloQueue.Text = "";
+            TextBox_ModifyAccount_FlexQueue.Text = "";
 
 
             ((Control) ManageAccountTab).Enabled = false;
@@ -500,6 +502,9 @@ namespace LolAccountManager
             TextBox_ModifyAccount_SummonerName.Text = "";
             TextBox_ModifyAccount_Server.Text = "";
             TextBox_ModifyAccount_Password.Text = "";
+            TextBox_ModifyAccount_SoloQueue.Text = "";
+            TextBox_ModifyAccount_FlexQueue.Text = "";
+
             _source.Remove(currentObject);
             ((Control) ManageAccountTab).Enabled = false;
             Tabs.SelectedIndex = 0;

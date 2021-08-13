@@ -47,8 +47,10 @@
   <ItemGroup>
     <Compile Include="Exceptions\RiotClientExceptions.cs" />
     <Compile Include="Exceptions\RiotClientUnauthorizedException.cs" />
+    <Compile Include="LCU\LeagueClient.cs" />
     <Compile Include="LCU\RiotAccount.cs" />
-    <Compile Include="LCU\RiotClientResponseAccount.cs" />
+    <Compile Include="ResponseClasses\LeagueClientRankedResponse.cs" />
+    <Compile Include="ResponseClasses\RiotClientResponseAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LCU\RiotClient.cs" />
     <Compile Include="Utils.cs" />
@@ -56,5 +58,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

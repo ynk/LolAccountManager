@@ -13,12 +13,12 @@ namespace LCULib.LCU
         public string Password { get;  set; }
         public string Server { get;  set; }
         public string SummonerName { get;  set; }
-        // public string Rank { get; set; }
-        // public string Tier { get; set; }
+        public string Solo_Duo_Rank { get; set; }
+        public string Flex_Rank { get; set; }
 
 
 
-     
+
 
         public RiotAccount(string loginName, string password)
         {

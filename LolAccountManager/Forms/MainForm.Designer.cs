@@ -418,7 +418,7 @@ namespace LolAccountManager
             // CheckBox_Add_HideUsername
             // 
             this.CheckBox_Add_HideUsername.AutoSize = true;
-            this.CheckBox_Add_HideUsername.Location = new System.Drawing.Point(82, 109);
+            this.CheckBox_Add_HideUsername.Location = new System.Drawing.Point(254, 173);
             this.CheckBox_Add_HideUsername.Name = "CheckBox_Add_HideUsername";
             this.CheckBox_Add_HideUsername.Size = new System.Drawing.Size(99, 17);
             this.CheckBox_Add_HideUsername.TabIndex = 9;
@@ -429,7 +429,7 @@ namespace LolAccountManager
             // CheckBox_RememberPassword
             // 
             this.CheckBox_RememberPassword.AutoSize = true;
-            this.CheckBox_RememberPassword.Location = new System.Drawing.Point(290, 109);
+            this.CheckBox_RememberPassword.Location = new System.Drawing.Point(462, 173);
             this.CheckBox_RememberPassword.Name = "CheckBox_RememberPassword";
             this.CheckBox_RememberPassword.Size = new System.Drawing.Size(125, 17);
             this.CheckBox_RememberPassword.TabIndex = 7;
@@ -439,7 +439,7 @@ namespace LolAccountManager
             // 
             // TextBox_Password
             // 
-            this.TextBox_Password.Location = new System.Drawing.Point(82, 83);
+            this.TextBox_Password.Location = new System.Drawing.Point(254, 147);
             this.TextBox_Password.MaxLength = 32;
             this.TextBox_Password.Name = "TextBox_Password";
             this.TextBox_Password.Size = new System.Drawing.Size(310, 20);
@@ -447,7 +447,7 @@ namespace LolAccountManager
             // 
             // Button_AddAccount
             // 
-            this.Button_AddAccount.Location = new System.Drawing.Point(100, 132);
+            this.Button_AddAccount.Location = new System.Drawing.Point(272, 196);
             this.Button_AddAccount.Name = "Button_AddAccount";
             this.Button_AddAccount.Size = new System.Drawing.Size(263, 61);
             this.Button_AddAccount.TabIndex = 3;
@@ -458,7 +458,7 @@ namespace LolAccountManager
             // PasswordLoginLabel
             // 
             this.PasswordLoginLabel.AutoSize = true;
-            this.PasswordLoginLabel.Location = new System.Drawing.Point(20, 83);
+            this.PasswordLoginLabel.Location = new System.Drawing.Point(192, 147);
             this.PasswordLoginLabel.Name = "PasswordLoginLabel";
             this.PasswordLoginLabel.Size = new System.Drawing.Size(56, 13);
             this.PasswordLoginLabel.TabIndex = 3;
@@ -467,7 +467,7 @@ namespace LolAccountManager
             // LoginNameLabel
             // 
             this.LoginNameLabel.AutoSize = true;
-            this.LoginNameLabel.Location = new System.Drawing.Point(9, 41);
+            this.LoginNameLabel.Location = new System.Drawing.Point(181, 105);
             this.LoginNameLabel.Name = "LoginNameLabel";
             this.LoginNameLabel.Size = new System.Drawing.Size(67, 13);
             this.LoginNameLabel.TabIndex = 1;
@@ -475,7 +475,7 @@ namespace LolAccountManager
             // 
             // TextBox_AddAccount_LoginName
             // 
-            this.TextBox_AddAccount_LoginName.Location = new System.Drawing.Point(82, 38);
+            this.TextBox_AddAccount_LoginName.Location = new System.Drawing.Point(254, 102);
             this.TextBox_AddAccount_LoginName.MaxLength = 32;
             this.TextBox_AddAccount_LoginName.Name = "TextBox_AddAccount_LoginName";
             this.TextBox_AddAccount_LoginName.Size = new System.Drawing.Size(310, 20);
@@ -484,7 +484,7 @@ namespace LolAccountManager
             // CheckBox_Add_HidePassword
             // 
             this.CheckBox_Add_HidePassword.AutoSize = true;
-            this.CheckBox_Add_HidePassword.Location = new System.Drawing.Point(187, 109);
+            this.CheckBox_Add_HidePassword.Location = new System.Drawing.Point(359, 173);
             this.CheckBox_Add_HidePassword.Name = "CheckBox_Add_HidePassword";
             this.CheckBox_Add_HidePassword.Size = new System.Drawing.Size(97, 17);
             this.CheckBox_Add_HidePassword.TabIndex = 8;
@@ -650,7 +650,7 @@ namespace LolAccountManager
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(10, 343);
+            this.button3.Location = new System.Drawing.Point(10, 385);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(104, 23);
             this.button3.TabIndex = 2;
@@ -659,7 +659,7 @@ namespace LolAccountManager
             // 
             // Button_SaveDebugLog
             // 
-            this.Button_SaveDebugLog.Location = new System.Drawing.Point(544, 343);
+            this.Button_SaveDebugLog.Location = new System.Drawing.Point(713, 386);
             this.Button_SaveDebugLog.Name = "Button_SaveDebugLog";
             this.Button_SaveDebugLog.Size = new System.Drawing.Size(104, 23);
             this.Button_SaveDebugLog.TabIndex = 1;
@@ -672,7 +672,7 @@ namespace LolAccountManager
             this.DebugLog.Location = new System.Drawing.Point(10, 7);
             this.DebugLog.Multiline = true;
             this.DebugLog.Name = "DebugLog";
-            this.DebugLog.Size = new System.Drawing.Size(638, 330);
+            this.DebugLog.Size = new System.Drawing.Size(807, 372);
             this.DebugLog.TabIndex = 0;
             // 
             // statusStrip1
@@ -681,7 +681,7 @@ namespace LolAccountManager
             this.statusLabel});
             this.statusStrip1.Location = new System.Drawing.Point(0, 438);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(828, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(839, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -754,7 +754,7 @@ namespace LolAccountManager
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(828, 460);
+            this.ClientSize = new System.Drawing.Size(839, 460);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.Tabs);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;

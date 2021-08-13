@@ -91,7 +91,7 @@ namespace LCULib
                 switch (error)
                 {
                     case "auth_failure":
-                        throw new RiotClientExceptions("Account details invalid");
+                        throw new RiotClientExceptions("Username or password is invalid.");
                     default:
                         Debug.WriteLine(error);
                         break;
@@ -239,14 +239,14 @@ namespace LCULib
                     case "pbe1":
                         return "PBE";
                     default:
-                        return "***";
+                        return response.ToLower();
                 }
 
 
 
             }
 
-            return "error";
+         
 
 
 
