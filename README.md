@@ -41,7 +41,16 @@ Use at your own risk!
 
 
 ## Please note
-I have noticed that Windows defender complains that release V1.3 gets flagged as malware, obviously this is a false postive. I am trying to find a solution for this problem. 
+Release V1.3 kept getting flagged as malware (false positive), so I submitted LolAccountManager to microsoft for malware analysis. The analyst gave me this reply:
+
+The file is not malware and we cannot reproduce any detection on the file. If detection is still observed, please follow the steps below to capture support log files from the system reporting detection.
+
+On Windows 10, from elevated command prompt, change to directory "%programfiles%\windows defender" and execute mpcmdrun.exe with option GetFiles:
+cd "%programfiles%\windows defender"
+mpcmdrun.exe -GetFiles
+
+On Windows 7, from elevated command prompt, change to directory "%programfiles%\microsoft security client" and execute mpcmdrun.exe with option GetFiles:
+cd "%programfiles%\microsoft security client"
 
 
 
