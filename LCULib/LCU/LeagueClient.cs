@@ -19,7 +19,8 @@ namespace LCULib.LCU
         private string Port { get; set; }
         private string Password { get; set; }
 
-        public LeagueClientRankedResponse LeagueClientRanked { get; private set; }// used for lp
+        public LeagueClientRankedResponse LeagueClientRanked { get; private set; }
+        public LeagueClientStoreCredit LeagueClientStoreCredit { get; private set; }
         private Process LeagueProcess { get; set; }
 
         public LeagueClient()
@@ -84,27 +85,35 @@ namespace LCULib.LCU
 
                 LeagueClientRanked = new LeagueClientRankedResponse();
 
-                if (flex_rank.tier == "NONE")
-                {
-                    LeagueClientRanked.Flex_Queue = "Unranked";
-                }
-                else
-                {
-                    LeagueClientRanked.Flex_Queue = $"{flex_rank.tier} {flex_rank.division} (Lp: {flex_rank.leaguePoints}) (W:{flex_rank.wins}) (L:{flex_rank.losses})";
+                LeagueClientRanked.Flex_Queue = flex_rank.tier == "NONE" ? "Unranked" : $"{flex_rank.tier} {flex_rank.division} (Lp: {flex_rank.leaguePoints}) (W:{flex_rank.wins}) (L:{flex_rank.losses})";
 
-                }
-
-                if (solo_duo_rank.tier == "NONE")
-                {
-
-                    LeagueClientRanked.Solo_Queue = "Unranked";
-                }
-                else
-                {
-   
-                    LeagueClientRanked.Solo_Queue = $"{solo_duo_rank.tier} {solo_duo_rank.division} (Lp: {solo_duo_rank.leaguePoints}) (W:{solo_duo_rank.wins}) (L:{solo_duo_rank.losses})";
-                }
+                LeagueClientRanked.Solo_Queue = solo_duo_rank.tier == "NONE" ? "Unranked" : $"{solo_duo_rank.tier} {solo_duo_rank.division} (Lp: {solo_duo_rank.leaguePoints}) (W:{solo_duo_rank.wins}) (L:{solo_duo_rank.losses})";
             }
+        }
+
+        public void GetStoreCredit()
+        {
+            System.Net.ServicePointManager.ServerCertificateValidationCallback =
+                (senderX, certificate, chain, sslPolicyErrors) => { return true; };
+
+            var httpWebRequest =
+                (HttpWebRequest)WebRequest.Create($"https://127.0.0.1:{Port}/lol-store/v1/wallet");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "GET";
+            httpWebRequest.Headers.Add("Authorization", $"Basic {Password}");
+
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+                LeagueClientStoreCredit = JsonConvert.DeserializeObject<LeagueClientStoreCredit>(result);//Current queue map 
+
+
+               
+
+            }
+
         }
 
         public override string ToString()
