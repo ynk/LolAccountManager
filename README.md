@@ -16,6 +16,7 @@ Use at your own risk!
 - Rank (Solo/Flex)
 - Run on Startup
 - Start minimized
+- BE and RP 
 
 
 
