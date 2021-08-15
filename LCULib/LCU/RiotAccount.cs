@@ -9,15 +9,17 @@ namespace LCULib.LCU
 {
     public class RiotAccount
     {
-        public string LoginName { get;  set; } // Set is set to public because of file reading, normally this would be private.
-        public string Password { get;  set; }
+        public string
+            LoginName { get; set; } // Set is set to public because of file reading, normally this would be private.
+
+        public string Password { get; set; }
         public string Server { get; set; } = "?";
-        public string SummonerName { get; set; } = "NoName";
+        public string SummonerName { get; set; } = "No Name";
         public string Solo_Duo_Rank { get; set; } = "Unranked";
         public string Flex_Rank { get; set; } = "Unranked";
 
-
-
+        public int be { get; set; } = 0;
+        public int rp { get; set; } = 0;
 
 
         public RiotAccount(string loginName, string password)
@@ -25,7 +27,6 @@ namespace LCULib.LCU
             SetLoginName(loginName);
             SetPassword(password);
         }
-     
 
 
         public void SetLoginName(string loginName)
@@ -36,8 +37,8 @@ namespace LCULib.LCU
             }
 
             LoginName = loginName;
-
         }
+
         public void SetPassword(string password)
         {
             if (password.Length <= 0)
@@ -46,7 +47,6 @@ namespace LCULib.LCU
             }
 
             Password = password;
-
         }
 
         public void SetServer(string server)
@@ -57,7 +57,6 @@ namespace LCULib.LCU
             }
 
             Server = server;
-
         }
 
         public void SetSummonerName(string summonerName)
@@ -69,6 +68,5 @@ namespace LCULib.LCU
 
             SummonerName = summonerName;
         }
-  
     }
 }

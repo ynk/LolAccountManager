@@ -49,6 +49,7 @@
     <Compile Include="Exceptions\RiotClientUnauthorizedException.cs" />
     <Compile Include="LCU\LeagueClient.cs" />
     <Compile Include="LCU\RiotAccount.cs" />
+    <Compile Include="ResponseClasses\LeagueClientStoreCredit.cs" />
     <Compile Include="ResponseClasses\LeagueClientRankedResponse.cs" />
     <Compile Include="ResponseClasses\RiotClientResponseAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -209,7 +209,7 @@ namespace LolAccountManager
 
             if (Checkbox_HideSummonerName.Checked)
             {
-                if (e.ColumnIndex == 3 && e.Value != null)
+                if (e.ColumnIndex == 7 && e.Value != null)
                 {
                     var SummonerName = new String('*', e.Value.ToString().Length);
 
@@ -500,6 +500,8 @@ namespace LolAccountManager
             TextBox_ModifyAccount_Password.Text = "";
             TextBox_ModifyAccount_SoloQueue.Text = "";
             TextBox_ModifyAccount_FlexQueue.Text = "";
+            TextBox_ModifyAccount_BE.Text = "";
+            TextBox_ModifyAccount_RP.Text = "";
 
             _source.Remove(currentObject);
             ((Control) ManageAccountTab).Enabled = false;
@@ -608,8 +610,17 @@ namespace LolAccountManager
 
                 RiotAccount currentObject = (RiotAccount)accountGridView.CurrentRow.DataBoundItem;
 
-
+                leagueClient.GetStoreCredit();
                 leagueClient.GetCurrentRankedStats();
+
+
+                currentObject.be = leagueClient.LeagueClientStoreCredit.ip; //'ip' is the old name that got replaced with be
+                currentObject.rp = leagueClient.LeagueClientStoreCredit.rp;
+
+
+
+                TextBox_ModifyAccount_BE.Text = currentObject.be.ToString();
+                TextBox_ModifyAccount_RP.Text = currentObject.rp.ToString();
 
                 currentObject.Flex_Rank = leagueClient.LeagueClientRanked.Flex_Queue;
                 TextBox_ModifyAccount_FlexQueue.Text = currentObject.Flex_Rank;
@@ -620,6 +631,8 @@ namespace LolAccountManager
 
 
                 WriteToDebug("Ranked details gathered");
+                
+                
 
             }
             catch (Exception exception)
@@ -634,6 +647,11 @@ namespace LolAccountManager
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
           
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
 
 
