@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("LolAccountManager")]
-[assembly: AssemblyDescription("Account manager build for League Of Legends")]
+[assembly: AssemblyDescription("Account manager for League Of Legends")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("LolAccountManager")]
