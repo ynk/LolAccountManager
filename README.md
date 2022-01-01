@@ -1,5 +1,5 @@
 # LolAccountManager
-![ExampleIMG](https://i.imgur.com/Bspz0CH.png)
+![ExampleIMG](https://i.imgur.com/BkinHwZ.png)
 
 [More screenshots can be found here](https://imgur.com/a/d2nNRYF)
 
