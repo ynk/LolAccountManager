@@ -175,6 +175,7 @@ namespace LolAccountManager
                     WriteToDebug($"account.json loaded");
                     _source = new BindingSource(_accounts, null);
                     accountGridView.DataSource = _source;
+                    ApplyFilters();
                 }
                 catch (Exception e)
                 {
@@ -335,12 +336,13 @@ namespace LolAccountManager
         {
             // Disable Modify Account Tab On Form Load
             ((Control) ManageAccountTab).Enabled = false;
+            filterComboBox.SelectedIndex = 0;
             LoadSettings();
 
             ParseAccountFile();
             CheckIfRunOnStartupIsEnabled();
 
-            filterComboBox.SelectedIndex = 0;
+ 
 
             accountGridView.AutoGenerateColumns = false;
         }
@@ -686,6 +688,7 @@ namespace LolAccountManager
 
         private void ApplyFilters()
         {
+            
             string filter = filterComboBox.SelectedItem.ToString();
             WriteToDebug($"Applying filter: {filter}");
 
