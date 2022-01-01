@@ -118,7 +118,12 @@ namespace LolAccountManager
 
                 RiotAccount account = new RiotAccount(username, password);
 
-
+                if (_source == null)
+                {
+                    _accounts = new BindingList<RiotAccount>();
+                    _source = new BindingSource(_accounts, null);
+                    accountGridView.DataSource = _source;
+                }
 
                 foreach (RiotAccount acc in _source)
                 {
@@ -137,11 +142,7 @@ namespace LolAccountManager
                 }
 
 
-                if (_source == null)
-                {
-                    _source = new BindingSource(null, null);
-                    accountGridView.DataSource = _source;
-                }
+                
 
 
 
@@ -692,8 +693,9 @@ namespace LolAccountManager
             string filter = filterComboBox.SelectedItem.ToString();
             WriteToDebug($"Applying filter: {filter}");
 
-            if (_source == null)
+            if (_accounts == null)
             {
+                WriteToDebug("No account binding list.");
                 return;
             }
 
