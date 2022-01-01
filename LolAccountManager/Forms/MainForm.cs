@@ -29,6 +29,7 @@ namespace LolAccountManager
     {
         private RiotClient _riotClient = null;
         private BindingSource _source = null;
+        private BindingList<RiotAccount> _accounts;
         private ContextMenu _contextMenu = new System.Windows.Forms.ContextMenu();
         private MenuItem _menuItem1 = new System.Windows.Forms.MenuItem();
 
@@ -117,6 +118,17 @@ namespace LolAccountManager
 
                 RiotAccount account = new RiotAccount(username, password);
 
+
+
+                foreach (RiotAccount acc in _source)
+                {
+                    if (string.Equals(acc.LoginName, account.LoginName))
+                    {
+                        MessageBox.Show("Username already exists");
+                        return;
+                    }
+                }
+
                 TextBox_AddAccount_LoginName.Text = "";
                 if (!CheckBox_RememberPassword.Checked)
                 {
@@ -131,8 +143,14 @@ namespace LolAccountManager
                     accountGridView.DataSource = _source;
                 }
 
-                _source.Add(account);
+
+
+                //Check if username is already in source
+
+
+                _accounts.Add(account);
                 accountGridView.Refresh();
+                ApplyFilters();// Apply filters if a new account is created so it gets added to the ? filter.
                 MessageBox.Show("Added new account");
             }
             catch (Exception exception)
@@ -152,10 +170,10 @@ namespace LolAccountManager
             {
                 try
                 {
-                    var result =
+                    _accounts =
                         JsonConvert.DeserializeObject<BindingList<RiotAccount>>(File.ReadAllText("accounts.json"));
                     WriteToDebug($"account.json loaded");
-                    _source = new BindingSource(result, null);
+                    _source = new BindingSource(_accounts, null);
                     accountGridView.DataSource = _source;
                 }
                 catch (Exception e)
@@ -322,6 +340,8 @@ namespace LolAccountManager
             ParseAccountFile();
             CheckIfRunOnStartupIsEnabled();
 
+            filterComboBox.SelectedIndex = 0;
+
             accountGridView.AutoGenerateColumns = false;
         }
 
@@ -460,7 +480,9 @@ namespace LolAccountManager
             if (CheckBox_Add_HidePassword.Checked)
             {
                 TextBox_Password.UseSystemPasswordChar = true;
+                return;
             }
+            TextBox_Password.UseSystemPasswordChar = false;
         }
 
         private void CheckBox_Add_HideUsername_CheckedChanged(object sender, EventArgs e)
@@ -653,6 +675,44 @@ namespace LolAccountManager
         {
 
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            ApplyFilters();
+           
+
+        }
+
+        private void ApplyFilters()
+        {
+            string filter = filterComboBox.SelectedItem.ToString();
+            WriteToDebug($"Applying filter: {filter}");
+
+            if (_source == null)
+            {
+                return;
+            }
+
+            if (filter == "ALL")
+            {
+                accountGridView.DataSource = _accounts;
+                accountGridView.Update();
+
+            }
+            else
+
+            {
+                BindingList<RiotAccount> filtered =
+                    new BindingList<RiotAccount>(_accounts.Where(obj => obj.Server.Contains(filter)).ToList());
+
+                accountGridView.DataSource = filtered;
+                accountGridView.Update();
+
+            }
+        }
+
+    
 
 
         /* Todo: Finish writing background workers */

@@ -38,7 +38,20 @@ namespace LolAccountManager
             this.button2 = new System.Windows.Forms.Button();
             this.Button_SaveAccounts = new System.Windows.Forms.Button();
             this.accountGridView = new System.Windows.Forms.DataGridView();
+            this.loginNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Solo_Duo_Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Flex_Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.be = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.summonerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.riotAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ManageAccountTab = new System.Windows.Forms.TabPage();
+            this.TextBox_ModifyAccount_BE = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.TextBox_ModifyAccount_RP = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.Button_ModifyAccount_GetRankedData = new System.Windows.Forms.Button();
             this.TextBox_ModifyAccount_FlexQueue = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -91,22 +104,11 @@ namespace LolAccountManager
             this.BackgroundWorker_RankChecker = new System.ComponentModel.BackgroundWorker();
             this.BackgroundWorker_ClientChecker = new System.ComponentModel.BackgroundWorker();
             this.Notify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.TextBox_ModifyAccount_RP = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.TextBox_ModifyAccount_BE = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.riotAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.loginNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.serverDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Solo_Duo_Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Flex_Rank = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.be = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.summonerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.filterComboBox = new System.Windows.Forms.ComboBox();
             this.Tabs.SuspendLayout();
             this.HomePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accountGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riotAccountBindingSource)).BeginInit();
             this.ManageAccountTab.SuspendLayout();
             this.AccountPage.SuspendLayout();
             this.SettingsPage.SuspendLayout();
@@ -114,7 +116,6 @@ namespace LolAccountManager
             this.groupBox1.SuspendLayout();
             this.DebugPage.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.riotAccountBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // Tabs
@@ -132,6 +133,7 @@ namespace LolAccountManager
             // 
             // HomePage
             // 
+            this.HomePage.Controls.Add(this.filterComboBox);
             this.HomePage.Controls.Add(this.label8);
             this.HomePage.Controls.Add(this.label5);
             this.HomePage.Controls.Add(this.button4);
@@ -220,6 +222,75 @@ namespace LolAccountManager
             this.accountGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.accountGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
+            // loginNameDataGridViewTextBoxColumn
+            // 
+            this.loginNameDataGridViewTextBoxColumn.DataPropertyName = "LoginName";
+            this.loginNameDataGridViewTextBoxColumn.HeaderText = "Login Name";
+            this.loginNameDataGridViewTextBoxColumn.Name = "loginNameDataGridViewTextBoxColumn";
+            this.loginNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
+            this.passwordDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // serverDataGridViewTextBoxColumn
+            // 
+            this.serverDataGridViewTextBoxColumn.DataPropertyName = "Server";
+            this.serverDataGridViewTextBoxColumn.HeaderText = "Server";
+            this.serverDataGridViewTextBoxColumn.Name = "serverDataGridViewTextBoxColumn";
+            this.serverDataGridViewTextBoxColumn.ReadOnly = true;
+            this.serverDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // Solo_Duo_Rank
+            // 
+            this.Solo_Duo_Rank.DataPropertyName = "Solo_Duo_Rank";
+            this.Solo_Duo_Rank.HeaderText = "Solo Queue";
+            this.Solo_Duo_Rank.Name = "Solo_Duo_Rank";
+            this.Solo_Duo_Rank.ReadOnly = true;
+            this.Solo_Duo_Rank.Width = 180;
+            // 
+            // Flex_Rank
+            // 
+            this.Flex_Rank.DataPropertyName = "Flex_Rank";
+            this.Flex_Rank.HeaderText = "Flex Queue";
+            this.Flex_Rank.Name = "Flex_Rank";
+            this.Flex_Rank.ReadOnly = true;
+            this.Flex_Rank.Width = 180;
+            // 
+            // be
+            // 
+            this.be.DataPropertyName = "be";
+            this.be.HeaderText = "BE";
+            this.be.Name = "be";
+            this.be.ReadOnly = true;
+            this.be.Width = 50;
+            // 
+            // rp
+            // 
+            this.rp.DataPropertyName = "rp";
+            this.rp.HeaderText = "RP";
+            this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
+            this.rp.Width = 50;
+            // 
+            // summonerNameDataGridViewTextBoxColumn
+            // 
+            this.summonerNameDataGridViewTextBoxColumn.DataPropertyName = "SummonerName";
+            this.summonerNameDataGridViewTextBoxColumn.FillWeight = 200F;
+            this.summonerNameDataGridViewTextBoxColumn.HeaderText = "Summoner Name";
+            this.summonerNameDataGridViewTextBoxColumn.Name = "summonerNameDataGridViewTextBoxColumn";
+            this.summonerNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.summonerNameDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // riotAccountBindingSource
+            // 
+            this.riotAccountBindingSource.DataSource = typeof(LCULib.LCU.RiotAccount);
+            // 
             // ManageAccountTab
             // 
             this.ManageAccountTab.Controls.Add(this.TextBox_ModifyAccount_BE);
@@ -252,6 +323,40 @@ namespace LolAccountManager
             this.ManageAccountTab.Text = "Manage Account";
             this.ManageAccountTab.UseVisualStyleBackColor = true;
             this.ManageAccountTab.Click += new System.EventHandler(this.ManageAccountTab_Click);
+            // 
+            // TextBox_ModifyAccount_BE
+            // 
+            this.TextBox_ModifyAccount_BE.Enabled = false;
+            this.TextBox_ModifyAccount_BE.Location = new System.Drawing.Point(368, 158);
+            this.TextBox_ModifyAccount_BE.Name = "TextBox_ModifyAccount_BE";
+            this.TextBox_ModifyAccount_BE.Size = new System.Drawing.Size(61, 20);
+            this.TextBox_ModifyAccount_BE.TabIndex = 24;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(341, 161);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(21, 13);
+            this.label10.TabIndex = 23;
+            this.label10.Text = "BE";
+            // 
+            // TextBox_ModifyAccount_RP
+            // 
+            this.TextBox_ModifyAccount_RP.Enabled = false;
+            this.TextBox_ModifyAccount_RP.Location = new System.Drawing.Point(368, 191);
+            this.TextBox_ModifyAccount_RP.Name = "TextBox_ModifyAccount_RP";
+            this.TextBox_ModifyAccount_RP.Size = new System.Drawing.Size(61, 20);
+            this.TextBox_ModifyAccount_RP.TabIndex = 22;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(340, 194);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(22, 13);
+            this.label9.TabIndex = 21;
+            this.label9.Text = "RP";
             // 
             // Button_ModifyAccount_GetRankedData
             // 
@@ -734,118 +839,40 @@ namespace LolAccountManager
             // 
             this.toolStripStatusLabel_Version.Name = "toolStripStatusLabel_Version";
             this.toolStripStatusLabel_Version.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripStatusLabel_Version.Size = new System.Drawing.Size(808, 17);
+            this.toolStripStatusLabel_Version.Size = new System.Drawing.Size(777, 17);
             this.toolStripStatusLabel_Version.Spring = true;
-            this.toolStripStatusLabel_Version.Text = "V1.3a";
+            this.toolStripStatusLabel_Version.Text = "V1.4b";
             this.toolStripStatusLabel_Version.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+
             // 
             // Notify
             // 
             this.Notify.Text = "LolAccountManager";
             this.Notify.Visible = true;
             // 
-            // TextBox_ModifyAccount_RP
+            // filterComboBox
             // 
-            this.TextBox_ModifyAccount_RP.Enabled = false;
-            this.TextBox_ModifyAccount_RP.Location = new System.Drawing.Point(368, 191);
-            this.TextBox_ModifyAccount_RP.Name = "TextBox_ModifyAccount_RP";
-            this.TextBox_ModifyAccount_RP.Size = new System.Drawing.Size(61, 20);
-            this.TextBox_ModifyAccount_RP.TabIndex = 22;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(340, 194);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(22, 13);
-            this.label9.TabIndex = 21;
-            this.label9.Text = "RP";
-            // 
-            // TextBox_ModifyAccount_BE
-            // 
-            this.TextBox_ModifyAccount_BE.Enabled = false;
-            this.TextBox_ModifyAccount_BE.Location = new System.Drawing.Point(368, 158);
-            this.TextBox_ModifyAccount_BE.Name = "TextBox_ModifyAccount_BE";
-            this.TextBox_ModifyAccount_BE.Size = new System.Drawing.Size(61, 20);
-            this.TextBox_ModifyAccount_BE.TabIndex = 24;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(341, 161);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(21, 13);
-            this.label10.TabIndex = 23;
-            this.label10.Text = "BE";
-            // 
-            // riotAccountBindingSource
-            // 
-            this.riotAccountBindingSource.DataSource = typeof(LCULib.LCU.RiotAccount);
-            // 
-            // loginNameDataGridViewTextBoxColumn
-            // 
-            this.loginNameDataGridViewTextBoxColumn.DataPropertyName = "LoginName";
-            this.loginNameDataGridViewTextBoxColumn.HeaderText = "Login Name";
-            this.loginNameDataGridViewTextBoxColumn.Name = "loginNameDataGridViewTextBoxColumn";
-            this.loginNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.FillWeight = 50F;
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
-            this.passwordDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // serverDataGridViewTextBoxColumn
-            // 
-            this.serverDataGridViewTextBoxColumn.DataPropertyName = "Server";
-            this.serverDataGridViewTextBoxColumn.HeaderText = "Server";
-            this.serverDataGridViewTextBoxColumn.Name = "serverDataGridViewTextBoxColumn";
-            this.serverDataGridViewTextBoxColumn.ReadOnly = true;
-            this.serverDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // Solo_Duo_Rank
-            // 
-            this.Solo_Duo_Rank.DataPropertyName = "Solo_Duo_Rank";
-            this.Solo_Duo_Rank.HeaderText = "Solo Queue";
-            this.Solo_Duo_Rank.Name = "Solo_Duo_Rank";
-            this.Solo_Duo_Rank.ReadOnly = true;
-            this.Solo_Duo_Rank.Width = 180;
-            // 
-            // Flex_Rank
-            // 
-            this.Flex_Rank.DataPropertyName = "Flex_Rank";
-            this.Flex_Rank.HeaderText = "Flex Queue";
-            this.Flex_Rank.Name = "Flex_Rank";
-            this.Flex_Rank.ReadOnly = true;
-            this.Flex_Rank.Width = 180;
-            // 
-            // be
-            // 
-            this.be.DataPropertyName = "be";
-            this.be.HeaderText = "BE";
-            this.be.Name = "be";
-            this.be.ReadOnly = true;
-            this.be.Width = 50;
-            // 
-            // rp
-            // 
-            this.rp.DataPropertyName = "rp";
-            this.rp.HeaderText = "RP";
-            this.rp.Name = "rp";
-            this.rp.ReadOnly = true;
-            this.rp.Width = 50;
-            // 
-            // summonerNameDataGridViewTextBoxColumn
-            // 
-            this.summonerNameDataGridViewTextBoxColumn.DataPropertyName = "SummonerName";
-            this.summonerNameDataGridViewTextBoxColumn.FillWeight = 200F;
-            this.summonerNameDataGridViewTextBoxColumn.HeaderText = "Summoner Name";
-            this.summonerNameDataGridViewTextBoxColumn.Name = "summonerNameDataGridViewTextBoxColumn";
-            this.summonerNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.summonerNameDataGridViewTextBoxColumn.Width = 250;
+            this.filterComboBox.FormattingEnabled = true;
+            this.filterComboBox.Items.AddRange(new object[] {
+            "ALL",
+            "EUW",
+            "NA",
+            "BR",
+            "EUNE",
+            "LAN",
+            "LAS",
+            "OC",
+            "TR",
+            "JP",
+            "KR",
+            "RU",
+            "PBE",
+            "?"});
+            this.filterComboBox.Location = new System.Drawing.Point(155, 35);
+            this.filterComboBox.Name = "filterComboBox";
+            this.filterComboBox.Size = new System.Drawing.Size(140, 21);
+            this.filterComboBox.TabIndex = 7;
+            this.filterComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -864,6 +891,7 @@ namespace LolAccountManager
             this.HomePage.ResumeLayout(false);
             this.HomePage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accountGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.riotAccountBindingSource)).EndInit();
             this.ManageAccountTab.ResumeLayout(false);
             this.ManageAccountTab.PerformLayout();
             this.AccountPage.ResumeLayout(false);
@@ -878,7 +906,6 @@ namespace LolAccountManager
             this.DebugPage.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.riotAccountBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -962,6 +989,7 @@ namespace LolAccountManager
         private System.Windows.Forms.DataGridViewTextBoxColumn be;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn summonerNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ComboBox filterComboBox;
     }
 }
 
