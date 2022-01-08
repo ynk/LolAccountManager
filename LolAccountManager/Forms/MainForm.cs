@@ -189,7 +189,7 @@ namespace LolAccountManager
 
         private void Button_SaveAccounts_Click(object sender, EventArgs e)
         {
-            var x = JsonConvert.SerializeObject(accountGridView.DataSource);
+            var x = JsonConvert.SerializeObject(_accounts);
             File.WriteAllText("accounts.json", x);
 
             MessageBox.Show("Saved all accounts to file");
@@ -203,10 +203,15 @@ namespace LolAccountManager
                 WriteToDebug("accounts.json does not exist.");
                 MessageBox.Show("accounts.json does not exist. unable to load any accounts.");
                 Tabs.SelectedIndex = 2;
+                //
+              
+               
             }
             else
             {
+
                 ParseAccountFile();
+                filterComboBox.SelectedIndex = 0;
             }
         }
 
@@ -717,7 +722,13 @@ namespace LolAccountManager
             }
         }
 
-    
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+
 
 
         /* Todo: Finish writing background workers */

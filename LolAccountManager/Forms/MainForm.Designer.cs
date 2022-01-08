@@ -32,6 +32,7 @@ namespace LolAccountManager
             this.components = new System.ComponentModel.Container();
             this.Tabs = new System.Windows.Forms.TabControl();
             this.HomePage = new System.Windows.Forms.TabPage();
+            this.filterComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
@@ -104,7 +105,6 @@ namespace LolAccountManager
             this.BackgroundWorker_RankChecker = new System.ComponentModel.BackgroundWorker();
             this.BackgroundWorker_ClientChecker = new System.ComponentModel.BackgroundWorker();
             this.Notify = new System.Windows.Forms.NotifyIcon(this.components);
-            this.filterComboBox = new System.Windows.Forms.ComboBox();
             this.Tabs.SuspendLayout();
             this.HomePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accountGridView)).BeginInit();
@@ -147,6 +147,30 @@ namespace LolAccountManager
             this.HomePage.TabIndex = 0;
             this.HomePage.Text = "Accounts";
             this.HomePage.UseVisualStyleBackColor = true;
+            // 
+            // filterComboBox
+            // 
+            this.filterComboBox.FormattingEnabled = true;
+            this.filterComboBox.Items.AddRange(new object[] {
+            "ALL",
+            "EUW",
+            "NA",
+            "BR",
+            "EUNE",
+            "LAN",
+            "LAS",
+            "OC",
+            "TR",
+            "JP",
+            "KR",
+            "RU",
+            "PBE",
+            "?"});
+            this.filterComboBox.Location = new System.Drawing.Point(155, 35);
+            this.filterComboBox.Name = "filterComboBox";
+            this.filterComboBox.Size = new System.Drawing.Size(140, 21);
+            this.filterComboBox.TabIndex = 7;
+            this.filterComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -839,40 +863,15 @@ namespace LolAccountManager
             // 
             this.toolStripStatusLabel_Version.Name = "toolStripStatusLabel_Version";
             this.toolStripStatusLabel_Version.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripStatusLabel_Version.Size = new System.Drawing.Size(777, 17);
+            this.toolStripStatusLabel_Version.Size = new System.Drawing.Size(808, 17);
             this.toolStripStatusLabel_Version.Spring = true;
             this.toolStripStatusLabel_Version.Text = "V1.4b";
             this.toolStripStatusLabel_Version.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-
             // 
             // Notify
             // 
             this.Notify.Text = "LolAccountManager";
             this.Notify.Visible = true;
-            // 
-            // filterComboBox
-            // 
-            this.filterComboBox.FormattingEnabled = true;
-            this.filterComboBox.Items.AddRange(new object[] {
-            "ALL",
-            "EUW",
-            "NA",
-            "BR",
-            "EUNE",
-            "LAN",
-            "LAS",
-            "OC",
-            "TR",
-            "JP",
-            "KR",
-            "RU",
-            "PBE",
-            "?"});
-            this.filterComboBox.Location = new System.Drawing.Point(155, 35);
-            this.filterComboBox.Name = "filterComboBox";
-            this.filterComboBox.Size = new System.Drawing.Size(140, 21);
-            this.filterComboBox.TabIndex = 7;
-            this.filterComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // MainForm
             // 
