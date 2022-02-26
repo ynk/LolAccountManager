@@ -53,8 +53,6 @@ namespace LolAccountManager
         }
 
 
-   
-
         public bool CheckIfRunOnStartupIsEnabled()
         {
             RegistryKey rk = Registry.CurrentUser.OpenSubKey
@@ -142,16 +140,12 @@ namespace LolAccountManager
                 }
 
 
-                
-
-
-
                 //Check if username is already in source
 
 
                 _accounts.Add(account);
                 accountGridView.Refresh();
-                ApplyFilters();// Apply filters if a new account is created so it gets added to the ? filter.
+                ApplyFilters(); // Apply filters if a new account is created so it gets added to the ? filter.
                 MessageBox.Show("Added new account");
             }
             catch (Exception exception)
@@ -294,22 +288,19 @@ namespace LolAccountManager
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
-
-
-            RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
-
-
-            RiotAccount account = new RiotAccount(currentObject.LoginName, currentObject.Password);
-            statusLabel.Text = "Trying to sign into Account!";
-            WriteToDebug("Trying to sign into Account");
-
-
-            WriteToDebug("Trying to login!");
-
-
             try
             {
+                RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
+
+
+                RiotAccount account = new RiotAccount(currentObject.LoginName, currentObject.Password);
+                statusLabel.Text = "Trying to sign into Account!";
+                WriteToDebug("Trying to sign into Account");
+
+
+                WriteToDebug("Trying to login!");
+
+
                 _riotClient = new RiotClient();
                 _riotClient.Login(account);
 
@@ -329,7 +320,7 @@ namespace LolAccountManager
             {
                 statusLabel.Text = $"Error trying to login: {exception.Message}";
                 WriteToDebug($"Login: {exception.Message}");
-                MessageBox.Show(exception.Message);
+                MessageBox.Show($"Caught error CellDoubleClick: {exception.Message}");
             }
         }
 
@@ -343,7 +334,6 @@ namespace LolAccountManager
             ParseAccountFile();
             CheckIfRunOnStartupIsEnabled();
 
- 
 
             accountGridView.AutoGenerateColumns = false;
         }
@@ -485,6 +475,7 @@ namespace LolAccountManager
                 TextBox_Password.UseSystemPasswordChar = true;
                 return;
             }
+
             TextBox_Password.UseSystemPasswordChar = false;
         }
 
@@ -633,15 +624,15 @@ namespace LolAccountManager
                 LeagueClient leagueClient = new LeagueClient();
 
 
-                RiotAccount currentObject = (RiotAccount)accountGridView.CurrentRow.DataBoundItem;
+                RiotAccount currentObject = (RiotAccount) accountGridView.CurrentRow.DataBoundItem;
 
                 leagueClient.GetStoreCredit();
                 leagueClient.GetCurrentRankedStats();
 
 
-                currentObject.be = leagueClient.LeagueClientStoreCredit.ip; //'ip' is the old name that got replaced with be
+                currentObject.be =
+                    leagueClient.LeagueClientStoreCredit.ip; //'ip' is the old name that got replaced with be
                 currentObject.rp = leagueClient.LeagueClientStoreCredit.rp;
-
 
 
                 TextBox_ModifyAccount_BE.Text = currentObject.be.ToString();
@@ -656,37 +647,26 @@ namespace LolAccountManager
 
 
                 WriteToDebug("Ranked details gathered");
-                
-                
-
             }
             catch (Exception exception)
             {
-
                 WriteToDebug($"Button_ModifyAccount_GetRankedData_Click: {exception.Message}");
                 MessageBox.Show(exception.Message);
             }
-
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-          
         }
 
-      
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             ApplyFilters();
-           
-
         }
 
         private void ApplyFilters()
         {
-            
             string filter = filterComboBox.SelectedItem.ToString();
             WriteToDebug($"Applying filter: {filter}");
 
@@ -700,7 +680,6 @@ namespace LolAccountManager
             {
                 accountGridView.DataSource = _accounts;
                 accountGridView.Update();
-
             }
             else
 
@@ -710,11 +689,8 @@ namespace LolAccountManager
 
                 accountGridView.DataSource = filtered;
                 accountGridView.Update();
-
             }
         }
-
-    
 
 
         /* Todo: Finish writing background workers */
