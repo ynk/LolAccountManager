@@ -189,7 +189,7 @@ namespace LolAccountManager
 
         private void Button_SaveAccounts_Click(object sender, EventArgs e)
         {
-            var x = JsonConvert.SerializeObject(accountGridView.DataSource);
+            var x = JsonConvert.SerializeObject(_accounts);
             File.WriteAllText("accounts.json", x);
 
             MessageBox.Show("Saved all accounts to file");
@@ -674,10 +674,7 @@ namespace LolAccountManager
           
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {

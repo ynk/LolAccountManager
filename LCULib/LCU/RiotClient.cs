@@ -184,7 +184,17 @@ namespace LCULib
                 RiotResponseAccount = new RiotClientResponseAccount();
 
                 RiotResponseAccount.Server = GetSignedInServer();
-                RiotResponseAccount.SummonerName = jsonResponse.lol_account.summoner_name;
+
+
+                try
+                {
+                    RiotResponseAccount.SummonerName = jsonResponse.lol_account.summoner_name;
+                }
+                catch
+                {
+                    //pbe account, perhaps?
+                    RiotResponseAccount.SummonerName = jsonResponse.acct.game_name;
+                }
 
 
 
