@@ -33,6 +33,13 @@ namespace LolAccountManager
         private ContextMenu _contextMenu = new System.Windows.Forms.ContextMenu();
         private MenuItem _menuItem1 = new System.Windows.Forms.MenuItem();
 
+
+        static string programDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        string filePath = Path.Combine(programDirectory, "accounts.json");
+
+        
+
+
         public MainForm()
         {
             InitializeComponent();
@@ -156,7 +163,8 @@ namespace LolAccountManager
 
         private void ParseAccountFile()
         {
-            if (!File.Exists("accounts.json"))
+            
+            if (!File.Exists(filePath))
             {
                 WriteToDebug("accounts.json does not exist.");
                 Tabs.SelectedIndex = 2;
@@ -192,7 +200,7 @@ namespace LolAccountManager
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            if (!File.Exists("accounts.json"))
+            if (!File.Exists(filePath))
             {
                 WriteToDebug("accounts.json does not exist.");
                 MessageBox.Show("accounts.json does not exist. unable to load any accounts.");
@@ -330,6 +338,9 @@ namespace LolAccountManager
             ((Control) ManageAccountTab).Enabled = false;
             filterComboBox.SelectedIndex = 0;
             LoadSettings();
+
+            WriteToDebug($"Program executed at: {programDirectory}");
+
 
             ParseAccountFile();
             CheckIfRunOnStartupIsEnabled();
