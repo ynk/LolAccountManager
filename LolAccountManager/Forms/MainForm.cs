@@ -174,7 +174,7 @@ namespace LolAccountManager
                 try
                 {
                     _accounts =
-                        JsonConvert.DeserializeObject<BindingList<RiotAccount>>(File.ReadAllText("accounts.json"));
+                        JsonConvert.DeserializeObject<BindingList<RiotAccount>>(File.ReadAllText(filePath));
                     WriteToDebug($"account.json loaded");
                     _source = new BindingSource(_accounts, null);
                     accountGridView.DataSource = _source;
